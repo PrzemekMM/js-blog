@@ -118,3 +118,25 @@ body {
     margin: 0 10px 0 0;
   }
 }
+.tag-size {
+  &-5 {
+    font-size: 180%;
+    color: black;
+  } 
+ 
+  &-3 {
+    font-size: 140%;
+    color: red;
+  } 
+  &-2 {
+    font-size: 120%;
+    color: green;
+  } 
+    &-1 {
+    font-size: 80%;
+  } 
+  
+}
+.list-horizontal {
+  display: inline-block;
+}
