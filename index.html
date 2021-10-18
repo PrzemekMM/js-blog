@@ -190,7 +190,7 @@
             <div class="post-tags">
               <p><strong>Tags:</strong></p>
               <ul class="list list-horizontal">
-                < </ul> </div> </article> <article class="post" id="article-9" data-tags="ring cat ball"
+                 </ul> </div> </article> <article class="post" id="article-9" data-tags="ring cat ball"
                   data-author="Marion Berry">
                   <h3 class="post-title">Article 9</h3>
                   <p class="post-author"> </p>
@@ -278,20 +278,18 @@
   <script id="template-article-link" type="text/x-handlebars-template">
     <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
   </script>
-  
-    <script id="template-tag-cloud-link" type="text/x-handlebars-template">
+  <script id="template-tag-cloud-link" type="text/x-handlebars-template">
       <li>{{#each tags}}
       <a class="{{className}}" href="#{{ tag }}"><span>{{ tag }}</span>({{ count }})</a>
       {{/each}}
       </li>
-    </script>
-    <script id="template-author-link" type="text/x-handlebars-template">
+  </script>
+  <script id="template-author-link" type="text/x-handlebars-template">
       <li>{{#each author}}
       <a class="{{className}}" href="#{{ tag }}"><span>{{ tag }}</span>({{ count2 }})</a>
       {{/each}}
       </li>
-    </script>
-  
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="js/script.js"></script>
 </body>
