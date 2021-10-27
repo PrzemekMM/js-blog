@@ -8,9 +8,11 @@ const templates = {
 };
 
 function titleClickHandler(event) {
+
+  event.preventDefault();
   const clickedElement = this;
   console.log('Link was clicked!');
-  event.preventDefault();
+
 
   /* [DONE] remove class 'active' from all article links  */
 
@@ -47,6 +49,7 @@ function titleClickHandler(event) {
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
+  optArticleTagsSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post-author',
   optCloudClassCount = 5,
   optCloudClassPrefix = 'tag-size-';
@@ -58,7 +61,6 @@ function generateTitleLinks(customSelector = '') {
   titleList.innerHTML = '';
   /* for each article */
   const articles = document.querySelectorAll(optArticleSelector + customSelector);
-  console.log(customSelector);
 
   for (let article of articles) {
 
@@ -74,8 +76,8 @@ function generateTitleLinks(customSelector = '') {
     };
     const linkHTML = templates.articleLink(linkHTMLData);
     /* insert link into titleList */
-    titleList.insertAdjacentHTML('beforeend', linkHTML);
-    //  titleList.innerHTML = titleList.innerHTML + linkHTML;
+    // titleList.insertAdjacentHTML('beforeend', linkHTML);
+    titleList.innerHTML = titleList.innerHTML + linkHTML;
   }
   const links = document.querySelectorAll('.titles a');
   for (let link of links) {
@@ -117,22 +119,25 @@ function generateTags() {
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every article: */
-  for (let article of articles) {
 
+  for (let article of articles) {
+    let html = '';
+    const tagLink = article.querySelector(optArticleTagsSelector);
     const articleTags = article.getAttribute('data-tags');
     /* split tags into array */
     const articleTagsArray = articleTags.split(' ');
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray) {
       /* generate HTML of the link */
-      const linkHTMLData = {
-        id: articleTags,
-        title: tag
-      };
+      const linkHTMLData = {id:'tag-'+tag, title: tag};
+
       const linkHTML = templates.tagLink(linkHTMLData);
+      html = html + linkHTML;
+
+
 
       /* add generated code to html variable */
-      article.insertAdjacentHTML('beforeend', linkHTML);
+      // article.insertAdjacentHTML('beforeend', linkHTML);
       /* [NEW] check if this link is NOT already in allTags */
       // eslint-disable-next-line no-prototype-builtins
       if (!allTags.hasOwnProperty(tag)) {
@@ -143,6 +148,8 @@ function generateTags() {
       }
       /* END LOOP: for each tag */
     }
+    console.log(html);
+    tagLink.innerHTML = html;
     /* END LOOP: for every article: */
   }
   /* [NEW] find list of tags in right column */
